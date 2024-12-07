@@ -20,8 +20,10 @@ jobs:
 
       - name: Test
         run: |
+          cd task-app-backend
           npm run test
 
       - name: Deploy
         run: |
+          cd task-app-deployment
           # deployment steps here
