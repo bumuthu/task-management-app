@@ -9,6 +9,7 @@ export const validateRequest = (schema: ZodSchema) => (req: Request, res: Respon
         if (error instanceof Error) {
             return res.status(400).json({
                 error: 'Validation error',
+                details: JSON.parse(error.message)
             });
         }
         next(error);
@@ -23,6 +24,7 @@ export const validatePathParams = (schema: ZodSchema) => (req: Request, res: Res
         if (error instanceof Error) {
             return res.status(400).json({
                 error: 'Validation error',
+                details: JSON.parse(error.message)
             });
         }
         next(error);

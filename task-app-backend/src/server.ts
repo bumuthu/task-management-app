@@ -15,8 +15,8 @@ const app: Express = express();
 // Adding middlewares
 app.use(bodyParser.json());
 app.use(cors());
-app.use(errorHandler);
 app.use(logger);
+app.use(errorHandler);
 
 // Adding routes
 app.use('/api', taskRouter);

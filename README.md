@@ -1,4 +1,4 @@
-# Task List Application
+# Task Management Application
 
 ###### **Current version: v1.0.0**
 
@@ -10,6 +10,11 @@ This project facilitates the management of your tasks. In this project, the foll
 
 - NPM: `10.8.2`
 - Node: `20.10.0`
+
+
+## Environment Provisioning
+
+Follow the guideline provided in the README file in [taks-app-deployment.](https://badge.fury.io/gh/bumuthu%2Ftask-management-app/tree/main/task-app-deployment)
 
 
 ## Installation
@@ -25,8 +30,9 @@ Then you can run the application by running the following command. This will bac
          npm run start
 
 
-
 Enjoy managing your task management app now! 
+
+
 
 
 ## Changelog

@@ -6,10 +6,10 @@ export interface EntityModel {
 
 export interface TaskModel extends EntityModel {
     title: string;
-    description: string;
+    description?: string;
     status: TaskStatus;
     createdAt: number;
-    updatedAt: number;
+    updatedAt?: number;
 }
 
 export interface UserModel extends EntityModel {

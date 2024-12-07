@@ -1,6 +1,6 @@
 import { AbstractTaskService } from "./abstract-task-service";
 import { TaskStatus } from "../models/enums";
-import { generateId } from "../utils/utils";
+import { generateId } from "../utils/common-utils";
 import { TaskModel } from "../models/entities";
 
 export class InmemoryTaskService extends AbstractTaskService {
@@ -19,11 +19,11 @@ export class InmemoryTaskService extends AbstractTaskService {
         return InmemoryTaskService.instace;
     }
 
-    public getAll(): TaskModel[] {
+    public async getAll(): Promise<TaskModel[]> {
         return this.records;
     }
 
-    public get(id: string): TaskModel {
+    public async get(id: string): Promise<TaskModel | null> {
         const record = this.records.find(r => r.id == id)
         if (!record) {
             throw new Error("Record not found");
@@ -31,7 +31,7 @@ export class InmemoryTaskService extends AbstractTaskService {
         return record;
     }
 
-    public create(data: TaskModel): TaskModel {
+    public async create(data: TaskModel): Promise<TaskModel> {
         const newTask: TaskModel = {
             ...data,
             createdAt: Date.now(),
@@ -42,7 +42,7 @@ export class InmemoryTaskService extends AbstractTaskService {
         return newTask;
     }
 
-    public update(id: string, data: TaskModel): TaskModel {
+    public async update(id: string, data: TaskModel): Promise<TaskModel> {
         const record = this.records.find(r => r.id == id)
         if (!record) {
             throw new Error("Record not found");
@@ -56,13 +56,12 @@ export class InmemoryTaskService extends AbstractTaskService {
         return newRecord;
     }
 
-    public delete(id: string) : TaskModel {
+    public async delete(id: string): Promise<void> {
         const record = this.records.find(r => r.id == id)
         if (!record) {
             throw new Error("Record not found");
         }
         const index = this.records.indexOf(record);
         this.records.splice(index, 1)
-        return record;
     }
 }
