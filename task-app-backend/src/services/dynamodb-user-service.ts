@@ -8,7 +8,7 @@ import ConfigProvider from "../config/config-provider";
 const userTableName = "UserTable";
 
 export class DynamoDBUserService extends AbstractUserService {
-    private static instace: DynamoDBUserService;
+    protected static instace: DynamoDBUserService;
 
     private constructor() {
         super()

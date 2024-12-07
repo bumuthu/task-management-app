@@ -10,7 +10,7 @@ const taskTableName = "TaskTable";
 export class DynamoDBTaskService extends AbstractTaskService {
     private static instace: DynamoDBTaskService;
 
-    private constructor() {
+    protected constructor() {
         super()
     }
 

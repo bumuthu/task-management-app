@@ -17,6 +17,7 @@ class ConfigProvider {
             TTL_MINUTES: process.env.TTL_MINUTES || 5,
             TASK_FILE_BUCKET: process.env.TASK_FILE_BUCKET
         };
+        console.log("Configs: ", this.config);
         this.validateConfig();
     }
 

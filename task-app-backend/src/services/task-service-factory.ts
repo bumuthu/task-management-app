@@ -1,3 +1,4 @@
+import { MockTaskService } from "../__tests__/mock-task-service";
 import ConfigProvider from "../config/config-provider";
 import { DatabaseType } from "../utils/enums";
 import { AbstractTaskService } from "./abstract-task-service";
@@ -11,6 +12,8 @@ export class TaskServiceFactory {
                 return InmemoryTaskService.getInstance();
             case DatabaseType.DYNAMO_DB:
                 return DynamoDBTaskService.getInstance();
+            case DatabaseType.MOCKED:
+                return MockTaskService.getInstance();
             default:
                 throw new Error("Unsupported database type");
         }
@@ -22,6 +25,8 @@ export class TaskServiceFactory {
                 return DatabaseType.IN_MEMORY;
             case 'dynamodb':
                 return DatabaseType.DYNAMO_DB;
+            case 'mocked':
+                return DatabaseType.MOCKED;
             default:
                 throw new Error("Unsupported database type");
         }

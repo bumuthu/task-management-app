@@ -4,10 +4,10 @@ import { generateId } from "../utils/common-utils";
 import { TaskModel } from "../models/entities";
 
 export class InmemoryTaskService extends AbstractTaskService {
-    private records: TaskModel[] = [];
-    private static instace: InmemoryTaskService;
+    protected records: TaskModel[] = [];
+    protected static instace: InmemoryTaskService;
 
-    private constructor() {
+    protected constructor() {
         super()
         this.records = [];
     }
@@ -48,8 +48,8 @@ export class InmemoryTaskService extends AbstractTaskService {
         }
         const index = this.records.indexOf(record);
         const newRecord = {
-            ...data,
             ...record,
+            ...data,
             updatedAt: Date.now()
         }
         this.records.splice(index, 1, newRecord)
