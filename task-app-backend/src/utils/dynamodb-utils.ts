@@ -1,4 +1,4 @@
-import { DeleteItemCommand, DynamoDBClient, GetItemCommand, PutItemCommand, ScanCommand, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
+import { BatchWriteItemCommand, DeleteItemCommand, DynamoDBClient, GetItemCommand, PutItemCommand, ScanCommand, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
 import ConfigProvider from "../config/config-provider";
 
 const client = new DynamoDBClient({ region: ConfigProvider.get('AWS_REGION') as string });
@@ -52,5 +52,15 @@ export const deleteItem = async (tableName: string, id: string) => {
         TableName: tableName
     };
     const command = new DeleteItemCommand(params);
+    return client.send(command);
+}
+
+export const batchWriteItems = async (tableName: string, items: any[]) => {
+    const params = {
+        RequestItems: {
+            [tableName]: items.map(item => ({ PutRequest: { Item: item } }))
+        }
+    };
+    const command = new BatchWriteItemCommand(params);
     return client.send(command);
 }

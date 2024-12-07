@@ -4,9 +4,8 @@ import cors from 'cors';
 import taskRouter from './routes/task-route';
 import { errorHandler } from './middlewares/error-handler';
 import { logger } from './middlewares/logger';
-import dotenv from 'dotenv';
 import ConfigProvider from './config/config-provider';
-dotenv.config();
+import userRouter from './routes/user-route';
 
 const port = ConfigProvider.get('PORT') as number;
 
@@ -20,6 +19,7 @@ app.use(errorHandler);
 
 // Adding routes
 app.use('/api', taskRouter);
+app.use('/api', userRouter);
 
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);

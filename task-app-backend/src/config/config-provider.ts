@@ -12,7 +12,9 @@ class ConfigProvider {
             AWS_ACCESS_KEY: process.env.AWS_ACCESS_KEY,
             AWS_SECRET_KEY: process.env.AWS_SECRET_KEY,
             AWS_REGION: process.env.AWS_REGION,
-            DATABASE_TYPE: process.env.DATABASE_TYPE || 'inmemory'
+            DATABASE_TYPE: process.env.DATABASE_TYPE || 'inmemory',
+            EXTERNAL_DATA_SOURCE: process.env.EXTERNAL_DATA_SOURCE,
+            TTL_MINUTES: process.env.TTL_MINUTES || 5
         };
         this.validateConfig();
     }

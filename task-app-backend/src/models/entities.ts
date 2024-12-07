@@ -1,10 +1,7 @@
 import { TaskStatus } from "./enums";
 
-export interface EntityModel {
+export interface TaskModel {
     id: string;
-}
-
-export interface TaskModel extends EntityModel {
     title: string;
     description?: string;
     status: TaskStatus;
@@ -12,7 +9,8 @@ export interface TaskModel extends EntityModel {
     updatedAt?: number;
 }
 
-export interface UserModel extends EntityModel {
+export interface UserModel {
+    id: number;
     name: string;
     email: string;
 }

@@ -18,11 +18,14 @@ Make sure to export the Aceess Key and Scret Key in the terminal before running 
 
 Install AWS CLI following these [instructions.](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
 
-Now, run the following command to provision DynamoDB tasks table as per the definition.
+Now, run the following commands to provision DynamoDB tasks & users tables as per the definitions. Then update the ttl for users table.
 
-        aws dynamodb create-table --cli-input-json file:dynamodb-tables/tasks-table-schema.json
+        aws dynamodb create-table --cli-input-json file://dynamodb-tables/tasks-table-schema.json
+        aws dynamodb create-table --cli-input-json file://dynamodb-tables/users-table-schema.json
+        aws dynamodb update-time-to-live --table-name UserTable --time-to-live-specification "Enabled=true, AttributeName=ttl"
 
 
-Now, run this and check whether the table is created in the account.
+Now, run this and check whether the tables are created in the account.
 
         aws dynamodb describe-table --table-name TaskTable
+        aws dynamodb describe-table --table-name UserTable

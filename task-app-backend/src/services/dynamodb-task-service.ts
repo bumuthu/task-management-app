@@ -5,10 +5,14 @@ import { AbstractTaskService } from "./abstract-task-service";
 import { TaskStatus } from "../models/enums";
 import { marshall, unmarshall } from "@aws-sdk/util-dynamodb";
 
-const taskTableName = "TaskTables";
+const taskTableName = "TaskTable";
 
 export class DynamoDBTaskService extends AbstractTaskService {
     private static instace: DynamoDBTaskService;
+
+    private constructor() {
+        super()
+    }
 
     public static getInstance() {
         if (!DynamoDBTaskService.instace) {

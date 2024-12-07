@@ -1,0 +1,27 @@
+{
+    "TableName": "UserTable",
+    "KeySchema": [
+        {
+            "AttributeName": "id",
+            "KeyType": "HASH"
+        },
+        {
+            "AttributeName": "ttl",
+            "KeyType": "RANGE"
+        }
+    ],
+    "AttributeDefinitions": [
+        {
+            "AttributeName": "id",
+            "AttributeType": "N"
+        },
+        {
+            "AttributeName": "ttl",
+            "AttributeType": "N"
+        }
+    ],
+    "ProvisionedThroughput": {
+        "ReadCapacityUnits": 5,
+        "WriteCapacityUnits": 5
+    }
+}
