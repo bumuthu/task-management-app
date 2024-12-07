@@ -29,10 +29,7 @@ class ConfigProvider {
     }
 
     public static get(key: string): string | number {
-        const value = this.getInstance().config[key];
-        if (!value) {
-            throw new Error(`Config value for key "${key}" is not defined`);
-        }
+        const value = this.getInstance().config[key]!;
         return value;
     }
 
