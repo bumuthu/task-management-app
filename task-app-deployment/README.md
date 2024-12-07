@@ -29,3 +29,9 @@ Now, run this and check whether the tables are created in the account.
 
         aws dynamodb describe-table --table-name TaskTable
         aws dynamodb describe-table --table-name UserTable
+
+
+Create S3 Bucket to enable file uploads with presigned URL.
+
+        aws s3api create-bucket --bucket task-files-us-east-2 --region us-east-2 --create-bucket-configuration LocationConstraint=us-east-2
+

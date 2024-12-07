@@ -29,11 +29,13 @@ export class InmemoryTaskService extends AbstractTaskService {
     }
 
     public async create(data: TaskModel): Promise<TaskModel> {
+        const id = generateId()
         const newTask: TaskModel = {
             ...data,
+            id,
             createdAt: Date.now(),
             status: TaskStatus.PENDING,
-            id: generateId()
+            fileUrl: await this.getUploadUrl(id)
         }
         this.records.push(newTask)
         return newTask;
@@ -47,7 +49,8 @@ export class InmemoryTaskService extends AbstractTaskService {
         const index = this.records.indexOf(record);
         const newRecord = {
             ...data,
-            ...record
+            ...record,
+            updatedAt: Date.now()
         }
         this.records.splice(index, 1, newRecord)
         return newRecord;
@@ -58,6 +61,7 @@ export class InmemoryTaskService extends AbstractTaskService {
         if (!record) {
             throw new Error("Record not found");
         }
+        await this.deleteFile(id)
         const index = this.records.indexOf(record);
         this.records.splice(index, 1)
     }

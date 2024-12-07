@@ -1,5 +1,5 @@
 import { UserModel } from "../models/entities";
-import { batchWriteItems, getAll, getItemById } from "../utils/dynamodb-utils";
+import { batchWriteItems, getAll } from "../utils/dynamodb-utils";
 import { marshall, unmarshall } from "@aws-sdk/util-dynamodb";
 import { AbstractUserService } from "./abstract-user-service";
 import { getTTL } from "../utils/common-utils";
@@ -31,7 +31,9 @@ export class DynamoDBUserService extends AbstractUserService {
     }
 
     public async batchCreate(data: UserModel[]): Promise<UserModel[]> {
-        await batchWriteItems(userTableName, data.map((item) => marshall({ ...item, ttl: getTTL(ConfigProvider.get('TTL_MINUTES') as number) })));
+        await batchWriteItems(userTableName,
+            data.map((item) => marshall({ ...item, ttl: getTTL(ConfigProvider.get('TTL_MINUTES') as number) }))
+        );
         return data;
     }
 }

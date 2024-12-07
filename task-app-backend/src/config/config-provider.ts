@@ -14,7 +14,8 @@ class ConfigProvider {
             AWS_REGION: process.env.AWS_REGION,
             DATABASE_TYPE: process.env.DATABASE_TYPE || 'inmemory',
             EXTERNAL_DATA_SOURCE: process.env.EXTERNAL_DATA_SOURCE,
-            TTL_MINUTES: process.env.TTL_MINUTES || 5
+            TTL_MINUTES: process.env.TTL_MINUTES || 5,
+            TASK_FILE_BUCKET: process.env.TASK_FILE_BUCKET
         };
         this.validateConfig();
     }

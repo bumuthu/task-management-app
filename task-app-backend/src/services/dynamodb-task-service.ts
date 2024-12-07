@@ -39,7 +39,12 @@ export class DynamoDBTaskService extends AbstractTaskService {
     }
 
     public async create(data: TaskModel): Promise<TaskModel> {
-        const enrichedTask = { ...data, id: generateId(), createdAt: Date.now(), status: data.status ?? TaskStatus.PENDING }
+        const id = generateId();
+        const enrichedTask: TaskModel = {
+            ...data, id, createdAt: Date.now(),
+            status: data.status ?? TaskStatus.PENDING,
+            fileUrl: await this.getUploadUrl(id)
+        }
         await createItem(taskTableName, marshall(enrichedTask));
         return enrichedTask;
     }
@@ -51,6 +56,7 @@ export class DynamoDBTaskService extends AbstractTaskService {
     }
 
     public async delete(id: string): Promise<void> {
+        await this.deleteFile(id)
         await deleteItem(taskTableName, id);
     }
 }
