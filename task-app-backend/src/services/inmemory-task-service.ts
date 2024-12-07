@@ -25,10 +25,7 @@ export class InmemoryTaskService extends AbstractTaskService {
 
     public async get(id: string): Promise<TaskModel | null> {
         const record = this.records.find(r => r.id == id)
-        if (!record) {
-            throw new Error("Record not found");
-        }
-        return record;
+        return record ?? null;
     }
 
     public async create(data: TaskModel): Promise<TaskModel> {

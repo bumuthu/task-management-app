@@ -46,4 +46,4 @@ Enjoy managing your task management app now!
 
 | Version | Release Date | Notes                        |
 |---------|--------------|------------------------------|
-| 1.0.0   | 2024-07-20   | Initial release              |
+| 1.0.0   | 2024-12-07   | Initial release              |
