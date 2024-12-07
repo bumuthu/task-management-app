@@ -1,0 +1,26 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: |
+          npm install
+          npm run build
+
+      - name: Test
+        run: |
+          npm run test
+
+      - name: Deploy
+        run: |
+          # deployment steps here
