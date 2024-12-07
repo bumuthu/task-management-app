@@ -14,6 +14,7 @@ jobs:
 
       - name: Build
         run: |
+          cd task-app-backend
           npm install
           npm run build
 
