@@ -8,8 +8,8 @@
 ## Overview
 This project facilitates the management of your tasks. In this project, the following tech stack is used.
 
-- NPM: `10.8.2`
-- Node: `20.10.0`
+- NPM: `10.9.0`
+- Node: `22.12.0`
 
 
 ## Environment Provisioning
@@ -17,17 +17,31 @@ This project facilitates the management of your tasks. In this project, the foll
 Follow the guideline provided in the README file in [taks-app-deployment.](https://badge.fury.io/gh/bumuthu%2Ftask-management-app/tree/main/task-app-deployment)
 
 
-## Installation
-You can get started easily by running the following commands from the root directory of the repo. 
+## Run Application
+
+Create .env file in the task-app-backend directory refering to .env.example file.
+
+### Running without Docker
+
+You can get started easily by running the following commands from task-app-backend directory. 
 
         npm install
         npm run build
 
+        npm run start
 
-## Usage
-Then you can run the application by running the following command. This will backend on `3000` as per the .env.
+Then your backend application will start running on `3000` as per the .env file.
 
-         npm run start
+
+### Running with Docker
+
+Run the following command from task-app-backend directory and build the docker image.
+
+        docker build -t task-app .
+
+Now you can run the following command to get the container up and running locally on `3000` port.
+
+        docker run -p 3000:3000 task-app
 
 
 Enjoy managing your task management app now! 

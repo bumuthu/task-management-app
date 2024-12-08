@@ -6,7 +6,7 @@ export interface TaskModel {
     description?: string;
     status: TaskStatus;
     createdAt: number;
-    fileUrl?: string,
+    uploadUrl?: string,
     updatedAt?: number;
 }
 

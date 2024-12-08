@@ -8,7 +8,6 @@ class ConfigProvider {
     private constructor() {
         this.config = {
             PORT: process.env.PORT || 3000,
-            DATABASE_URL: process.env.DATABASE_URL,
             AWS_ACCESS_KEY: process.env.AWS_ACCESS_KEY,
             AWS_SECRET_KEY: process.env.AWS_SECRET_KEY,
             AWS_REGION: process.env.AWS_REGION,

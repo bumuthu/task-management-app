@@ -1,7 +1,13 @@
 import { BatchWriteItemCommand, DeleteItemCommand, DynamoDBClient, GetItemCommand, PutItemCommand, ScanCommand, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
 import ConfigProvider from "../config/config-provider";
 
-const client = new DynamoDBClient({ region: ConfigProvider.get('AWS_REGION') as string });
+const client = new DynamoDBClient({
+    region: ConfigProvider.get('AWS_REGION') as string,
+    credentials: {
+        accessKeyId: ConfigProvider.get('AWS_ACCESS_KEY') as string,
+        secretAccessKey: ConfigProvider.get('AWS_SECRET_KEY') as string
+    }
+});
 
 export const getAll = async (tableName: string) => {
     const params = {

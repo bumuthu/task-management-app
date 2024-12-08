@@ -43,7 +43,7 @@ export class DynamoDBTaskService extends AbstractTaskService {
         const enrichedTask: TaskModel = {
             ...data, id, createdAt: Date.now(),
             status: data.status ?? TaskStatus.PENDING,
-            fileUrl: await this.getUploadUrl(id)
+            uploadUrl: await this.getUploadUrl(id)
         }
         await createItem(taskTableName, marshall(enrichedTask));
         return enrichedTask;

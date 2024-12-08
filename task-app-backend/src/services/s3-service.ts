@@ -12,6 +12,10 @@ export class S3Service {
     private createS3Object() {
         return new aws.S3({
             region: ConfigProvider.get('AWS_REGION') as string,
+            credentials: {
+                accessKeyId: ConfigProvider.get('AWS_ACCESS_KEY') as string,
+                secretAccessKey: ConfigProvider.get('AWS_SECRET_KEY') as string
+            }
         })
     }
 

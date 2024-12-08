@@ -7,7 +7,7 @@
 
 ## Environment Provisioning
 
-Create an IAM user with CLI access in order to create DynamoDB tables using AWS Management Console. Hereby I attach `AmazonDynamoDBFullAccess` in order to grant for all the actions including table create, list, update, read, etc.
+Create an IAM user with CLI access in order to create DynamoDB tables using AWS Management Console. Hereby I attach `AmazonDynamoDBFullAccess` and `AmazonS3FullAccess` in order to grant for all the actions including DynamoDB table create, list, update, read, and S3 file read, write, etc.
 
 
 Then create Access Keys for the IAM user in AWS Management Console. 

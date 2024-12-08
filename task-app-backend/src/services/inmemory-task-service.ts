@@ -35,7 +35,7 @@ export class InmemoryTaskService extends AbstractTaskService {
             id,
             createdAt: Date.now(),
             status: TaskStatus.PENDING,
-            fileUrl: await this.getUploadUrl(id)
+            uploadUrl: await this.getUploadUrl(id)
         }
         this.records.push(newTask)
         return newTask;

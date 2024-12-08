@@ -47,7 +47,7 @@ describe('Task E2E', () => {
                 expect.objectContaining({
                     title: task.title,
                     status: TaskStatus.PENDING,
-                    fileUrl: 'presigned_url'
+                    uploadUrl: 'presigned_url'
                 }));
 
             const getRes = await request(app).get('/api/tasks/' + createdRes.body.id);
@@ -56,7 +56,7 @@ describe('Task E2E', () => {
                 expect.objectContaining({
                     title: task.title,
                     status: TaskStatus.PENDING,
-                    fileUrl: 'presigned_url'
+                    uploadUrl: 'presigned_url'
                 }));
         });
     });
@@ -90,7 +90,7 @@ describe('Task E2E', () => {
                 expect.objectContaining({
                     title: task.title,
                     status: TaskStatus.PENDING,
-                    fileUrl: 'presigned_url'
+                    uploadUrl: 'presigned_url'
                 }));
 
             const updateRes = await request(app).put('/api/tasks/' + createRes.body.id).send({
@@ -101,7 +101,7 @@ describe('Task E2E', () => {
                 expect.objectContaining({
                     title: task.title,
                     status: TaskStatus.COMPLETED,
-                    fileUrl: 'presigned_url'
+                    uploadUrl: 'presigned_url'
                 }));
 
             const getRes = await request(app).get('/api/tasks/' + createRes.body.id);
@@ -110,7 +110,7 @@ describe('Task E2E', () => {
                 expect.objectContaining({
                     title: task.title,
                     status: TaskStatus.COMPLETED,
-                    fileUrl: 'presigned_url'
+                    uploadUrl: 'presigned_url'
                 }));
         });
     });
@@ -142,7 +142,7 @@ describe('Task E2E', () => {
                 expect.objectContaining({
                     title: task.title,
                     status: TaskStatus.PENDING,
-                    fileUrl: 'presigned_url'
+                    uploadUrl: 'presigned_url'
                 }));
 
             const deletedRes = await request(app).delete('/api/tasks/' + createRes.body.id);

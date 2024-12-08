@@ -41,7 +41,7 @@ describe('Task Controller', () => {
                 expect.objectContaining({
                     title: task.title,
                     status: TaskStatus.PENDING,
-                    fileUrl: 'presigned_url'
+                    uploadUrl: 'presigned_url'
                 })
             );
 
@@ -54,7 +54,7 @@ describe('Task Controller', () => {
             expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
                 title: task.title,
                 status: TaskStatus.PENDING,
-                fileUrl: 'presigned_url'
+                uploadUrl: 'presigned_url'
             }));
         });
     });
@@ -69,7 +69,7 @@ describe('Task Controller', () => {
                 expect.objectContaining({
                     title: task.title,
                     status: TaskStatus.PENDING,
-                    fileUrl: 'presigned_url'
+                    uploadUrl: 'presigned_url'
                 })
             );
 
@@ -84,7 +84,7 @@ describe('Task Controller', () => {
                 expect.objectContaining({
                     title: task.title,
                     status: TaskStatus.IN_PROGRESS,
-                    fileUrl: 'presigned_url'
+                    uploadUrl: 'presigned_url'
                 })
             );
 
@@ -96,7 +96,7 @@ describe('Task Controller', () => {
             expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
                 title: task.title,
                 status: TaskStatus.IN_PROGRESS,
-                fileUrl: 'presigned_url'
+                uploadUrl: 'presigned_url'
             }));
         });
 
@@ -112,7 +112,7 @@ describe('Task Controller', () => {
                 expect.objectContaining({
                     title: task.title,
                     status: TaskStatus.PENDING,
-                    fileUrl: 'presigned_url'
+                    uploadUrl: 'presigned_url'
                 })
             );
 
