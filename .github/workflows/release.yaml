@@ -1,0 +1,33 @@
+name: Build and Push
+
+on:
+  push:
+    branches:
+      - release
+
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Log in to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build Docker Image
+        run: |
+          cd task-app-backend
+          IMAGE_NAME=task-app
+          aws_account_id=$(aws sts get-caller-identity --query Account --output text)
+          region=us-east-1
+          repository_name=${IMAGE_NAME}
+          docker build -t ${IMAGE_NAME} .
+          docker tag ${IMAGE_NAME}:latest ${aws_account_id}.dkr.ecr.${region}.amazonaws.com/${repository_name}:latest
+
+      - name: Push Docker Image to Amazon ECR
+        run: |
+          aws_account_id=$(aws sts get-caller-identity --query Account --output text)
+          region=us-east-1
+          repository_name=task-app
+          docker push ${aws_account_id}.dkr.ecr.${region}.amazonaws.com/${repository_name}:latest
