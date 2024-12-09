@@ -8,6 +8,12 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    env:
+      AWS_REGION: us-east-1
+      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      REPOSITORY_NAME: taskapp
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -19,16 +25,12 @@ jobs:
       - name: Build Docker Image
         run: |
           cd task-app-backend
-          IMAGE_NAME=task-app
-          aws_account_id=$(aws sts get-caller-identity --query Account --output text)
-          region=us-east-1
-          repository_name=${IMAGE_NAME}
           docker build -t ${IMAGE_NAME} .
-          docker tag ${IMAGE_NAME}:latest ${aws_account_id}.dkr.ecr.${region}.amazonaws.com/${repository_name}:latest
+          docker tag ${REPOSITORY_NAME}:latest ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${REPOSITORY_NAME}:latest
 
       - name: Push Docker Image to Amazon ECR
         run: |
           aws_account_id=$(aws sts get-caller-identity --query Account --output text)
           region=us-east-1
           repository_name=task-app
-          docker push ${aws_account_id}.dkr.ecr.${region}.amazonaws.com/${repository_name}:latest
+          docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${REPOSITORY_NAME}:latest
