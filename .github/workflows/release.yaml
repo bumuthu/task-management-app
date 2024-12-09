@@ -25,12 +25,9 @@ jobs:
       - name: Build Docker Image
         run: |
           cd task-app-backend
-          docker build -t ${IMAGE_NAME} .
+          docker build -t ${REPOSITORY_NAME} .
           docker tag ${REPOSITORY_NAME}:latest ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${REPOSITORY_NAME}:latest
 
       - name: Push Docker Image to Amazon ECR
         run: |
-          aws_account_id=$(aws sts get-caller-identity --query Account --output text)
-          region=us-east-1
-          repository_name=task-app
           docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${REPOSITORY_NAME}:latest
